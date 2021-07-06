@@ -133,11 +133,37 @@ object FPrincipal: TFPrincipal
     Caption = 'Consulta Externa'
     OnClick = sbConsultaExternaClick
   end
+  object Label9: TLabel
+    Left = 12
+    Top = 711
+    Width = 159
+    Height = 23
+    Caption = 'Total Registros: '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object lTotal: TLabel
+    Left = 177
+    Top = 711
+    Width = 12
+    Height = 23
+    Caption = '0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object DBGrid1: TDBGrid
     Left = 8
     Top = 131
     Width = 1297
-    Height = 585
+    Height = 574
     DataSource = DataSource1
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
@@ -266,7 +292,7 @@ object FPrincipal: TFPrincipal
         FieldName = 'fechacapturaradiografia'
         ReadOnly = True
         Title.Caption = 'Fecha Captura'
-        Width = 86
+        Width = 155
         Visible = True
       end
       item
@@ -274,7 +300,7 @@ object FPrincipal: TFPrincipal
         FieldName = 'fechalectura'
         ReadOnly = True
         Title.Caption = 'Fecha Lectura'
-        Width = 93
+        Width = 135
         Visible = True
       end>
   end
@@ -522,15 +548,6 @@ object FPrincipal: TFPrincipal
       'CON CAPTURA'
       'CON LECTURA'
       'INTERPRETADO')
-  end
-  object Memo1: TMemo
-    Left = 12
-    Top = 544
-    Width = 945
-    Height = 89
-    Lines.Strings = (
-      'Memo1')
-    TabOrder = 7
   end
   object DataSource1: TDataSource
     DataSet = Query

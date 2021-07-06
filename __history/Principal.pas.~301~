@@ -229,9 +229,7 @@ begin
   Query.SQL.Add(consulta);
   Query.Open();
   if Query.RecordCount>0 then
-  lTotal.Caption:=Query.RecordCount.ToString
-  else
-  lTotal.Caption:='0';
+  lTotal.Caption:=Query.RecordCount.ToString;
 
   if Estado.Text='INTERPRETADO' then
   begin
@@ -481,10 +479,7 @@ begin
   Query.SQL.Clear;
   Query.SQL.Add(consulta);
   Query.Open;
-  if Query.RecordCount>0 then
-  lTotal.Caption:=Query.RecordCount.ToString
-  else
-  lTotal.Caption:='0';
+  lTotal.Caption:=Query.RecordCount.ToString;
 
 end;
 

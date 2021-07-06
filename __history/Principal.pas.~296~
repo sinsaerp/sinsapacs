@@ -34,9 +34,8 @@ type
     Label8: TLabel;
     lblUsuario: TLabel;
     Image1: TImage;
+    Memo1: TMemo;
     sbConsultaExterna: TSpeedButton;
-    Label9: TLabel;
-    lTotal: TLabel;
     procedure btnConsultarClick(Sender: TObject);
 
     procedure ExportaExcel(Dataset: TDataset; NombreArchivo: string);
@@ -135,7 +134,7 @@ begin
     ' (SELECT TOP(1) DESCRIPCION FROM Diagnosticoscie10 WHERE dxr.DXP = Diagnosticoscie10.DX ) as NombreDiagnostico';
   consultaP :=
         ' SELECT convert(varchar(5), f.hora, 108) as hora, ''1:''+CONVERT(varchar(10),f.Autonumerico) as Autonumerico, fecha, f.servicio, e.Nombre as NombreEPS, Paciente IdentificacionPaciente, u.NombreCompleto as NombrePaciente,'
-        + 'u.sexo, u.FECHA_NACIMIENTO as fechaNacimiento ,f.Codigo Cups, Medicamento NombreRX,Dosificasion ObservacionOrden,  dxr.DXP as CodigoDiagnostico,'+subconsulta+' ,oc.fechacapturaradiografia, m.nombre as medico'
+        + 'u.sexo, u.FECHA_NACIMIENTO as fechaNacimiento ,f.Codigo Cups, Medicamento NombreRX,Dosificasion ObservacionOrden,  dxr.DXP as CodigoDiagnostico,'+subconsulta+' ,oc.fechacapturaradiografia, oc.fechalectura, m.nombre as medico'
         + ' FROM Formulacion f,  procencos  p, Usuarios u, RipsG r, EPSSI e, CONTRATOSIN c, DXRips dxr, medicos m, oculusrx oc '
         + ' WHERE u.AfCodigo=Paciente and r.Rips=f.Rips and e.codigoEps=r.Eps and c.NumeroC=r.ContratoE  and dxr.rips=f.rips  and   (F.Tipo =3) '
         + ' and oc.codigo=f.autonumerico AND oc.origen=''HC'' and oc.urlimagenradiografia is not null and f.servicio = p.cconom and m.codigo=f.medico and f.rips>0'+
@@ -226,19 +225,9 @@ begin
 
   end;
   Query.SQL.Clear;
+  Memo1.Text := consulta;
   Query.SQL.Add(consulta);
   Query.Open();
-  if Query.RecordCount>0 then
-  lTotal.Caption:=Query.RecordCount.ToString
-  else
-  lTotal.Caption:='0';
-
-  if Estado.Text='INTERPRETADO' then
-  begin
-     Query.SQL.Clear;
-     Query.Close;
-
-  end;
 
 end;
 
@@ -478,13 +467,9 @@ begin
     end;
 
   end;
-  Query.SQL.Clear;
+  Memo1.Text := consulta;
   Query.SQL.Add(consulta);
   Query.Open;
-  if Query.RecordCount>0 then
-  lTotal.Caption:=Query.RecordCount.ToString
-  else
-  lTotal.Caption:='0';
 
 end;
 

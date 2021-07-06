@@ -34,9 +34,8 @@ type
     Label8: TLabel;
     lblUsuario: TLabel;
     Image1: TImage;
+    Memo1: TMemo;
     sbConsultaExterna: TSpeedButton;
-    Label9: TLabel;
-    lTotal: TLabel;
     procedure btnConsultarClick(Sender: TObject);
 
     procedure ExportaExcel(Dataset: TDataset; NombreArchivo: string);
@@ -226,12 +225,9 @@ begin
 
   end;
   Query.SQL.Clear;
+  Memo1.Text := consulta;
   Query.SQL.Add(consulta);
   Query.Open();
-  if Query.RecordCount>0 then
-  lTotal.Caption:=Query.RecordCount.ToString
-  else
-  lTotal.Caption:='0';
 
   if Estado.Text='INTERPRETADO' then
   begin
@@ -478,13 +474,9 @@ begin
     end;
 
   end;
-  Query.SQL.Clear;
+  Memo1.Text := consulta;
   Query.SQL.Add(consulta);
   Query.Open;
-  if Query.RecordCount>0 then
-  lTotal.Caption:=Query.RecordCount.ToString
-  else
-  lTotal.Caption:='0';
 
 end;
 
